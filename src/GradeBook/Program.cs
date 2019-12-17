@@ -9,7 +9,7 @@ namespace GradeBook
         {
             
             var book = new Book("Sott's grade book");
-
+            
             while(true)
             {
                 Console.WriteLine("Please enter a grade or q to quit");
@@ -47,5 +47,6 @@ namespace GradeBook
             Console.WriteLine($"The lowest grade is {stats.Low}");
             Console.WriteLine($"The letter grade is {stats.Letter}");
         }
+        
     }
 }
