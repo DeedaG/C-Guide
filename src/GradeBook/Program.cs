@@ -7,38 +7,11 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            
-            var book = new Book("Sott's grade book");
-            
-            while(true)
-            {
-                Console.WriteLine("Please enter a grade or q to quit");
-                var input = Console.ReadLine();
 
-                if(input == "q")
-                {
-                    break;
-                }
-
-                try
-                {
-                var grade = double.Parse(input);
-                book.AddGrade(grade);
-                }
-                catch(ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                catch(FormatException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    Console.WriteLine("**");
-                }
-            }
+            IBook book = new DiskBook("Sott's grade book");
             
+
+            EnterGrades(book);
 
             var stats = book.GetStatistics();
 
@@ -47,6 +20,37 @@ namespace GradeBook
             Console.WriteLine($"The lowest grade is {stats.Low}");
             Console.WriteLine($"The letter grade is {stats.Letter}");
         }
-        
+
+        private static void EnterGrades(IBook book)
+        {
+            while (true)
+            {
+                Console.WriteLine("Please enter a grade or q to quit");
+                var input = Console.ReadLine();
+
+                if (input == "q")
+                {
+                    break;
+                }
+
+                try
+                {
+                    var grade = double.Parse(input);
+                    book.AddGrade(grade);
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    Console.WriteLine("**");
+                }
+            }
+        }
     }
 }
