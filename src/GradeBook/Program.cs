@@ -7,9 +7,8 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-
-            IBook book = new DiskBook("Sott's grade book");
             
+            IBook book = new DiskBook("Sott's grade book");
 
             EnterGrades(book);
 
